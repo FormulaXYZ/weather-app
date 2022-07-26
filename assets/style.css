@@ -1,0 +1,57 @@
+/* styling the body starts here*/
+body{
+    background-color:wheat;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+.main-container{
+    background-color: azure;
+    width: 400px;
+    max-width: 80%;
+    border-radius: 10px;
+    padding: 15%;
+box-shadow: 0 0 15px 4px;
+/* styling the buttons*/
+}
+.ans-btn{
+    display: grid;
+    gap: 10px;
+    margin: 15px 0px;
+}
+.start-btn, .next-btn{
+    font-size: large;
+    font-weight: bolder;
+    padding: 5px 10px;
+}
+.hide{
+    display: none;
+}
+.message {
+    text-align: center;
+    color: blue;
+}
+.Resulttable{
+    width: 100%;
+    visibility: hidden;
+    border-collapse: collapse;
+    text-align: left; 
+}
+.Resulttable td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+.weather-container{
+    background-color: azure;
+    width: 50%;
+    max-width: 80%;
+    border-radius: 10px;
+    padding: 15%;
+box-shadow: 0 0 15px 4px;
+/* styling the buttons*/
+}
+  
