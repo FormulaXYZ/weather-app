@@ -14,7 +14,7 @@ function LookupWeatherByCity() {
         var appid ='d5cdcb2abf72bb410694d98e6d676258' ;
 
         //define the api url
-        var ApiUrl = 'http://api.openweathermap.org/data/2.5/weather?q=' + CurrentCityName + '&appid=' + appid + '&units=' + UnitsField.value;
+        var ApiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + CurrentCityName + '&appid=' + appid + '&units=' + UnitsField.value;
 
 
         //create object for api call
