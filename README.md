@@ -9,3 +9,4 @@ The weather dashboard Use the [OpenWeather One Call API](https://openweathermap.
  travelers can see the weather outlook for multiple cities SO,  they can plan a trip accordingly
 the weather dashboard has  inputs to search for a city.
 
+this is the waether App
