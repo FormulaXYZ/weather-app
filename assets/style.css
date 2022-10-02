@@ -18,6 +18,17 @@ body{
 box-shadow: 0 0 15px 4px;
 /* styling the buttons*/
 }
+.head{
+    display:flex;
+    font-size: 70px;
+    background-color: black;
+    color: blanchedalmond;
+    font-style: oblique;
+    padding: 5px 0 ;
+    border: 3px solid yellow;
+    justify-content: center;
+    
+};
 .ans-btn{
     display: grid;
     gap: 10px;
