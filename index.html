@@ -17,59 +17,24 @@
   <section class="weather-container">
 
     <!-- The control buttons starts here -->
-    <div id="StartContainer">
+    <div id="StartContainer" class="ContainerDiv">
       <table>
-        <header>
-          <Weather class="head">Weather Dashboard</p>
-        </header>
         <tr>
           <td>
             <label for="cityname">Please insert city name</label><br />
             <input type="text" id="cityname">
           </td>
           <td>
+
             <label for="units">Please select unit</label><br />
             <select name="units" id="units">
-
               <option value="imperial">Standard</option>
               <option value="metric">Metric</option>
             </select>
           </td>
         </tr>
       </table>
-
       <br>
       <button id="start-btn" class="start-btn">Show Weather</button>
     </div>
-    <br>
-    <table id="weathertable" class="Resulttable">
-      <tr width="30%">
-        <th>Parameter</th>
-        <th>value</th>
-      </tr>
-      <tr width="70%">
-        <td>City Name</td>
-        <td id="w_cityname"></td>
-      </tr>
-      <tr>
-        <td>Date</td>
-        <td id="w_date"></td>
-      </tr>
-      <tr>
-        <td>Temperature</td>
-        <td id="w_temperature"></td>
-      </tr>
-      <tr>
-        <td>wind speed</td>
-        <td id="w_windspeed"></td>
-      </tr>
-      <tr>
-        <td>Humidity</td>
-        <td id="w_humidity"></td>
-      </tr>
-    </table>
-  </section>
-  <script src="./assets/WeatherApiScript.js"></script>
-</body>
-
-</html>
+    <div class="ContainerDiv">
