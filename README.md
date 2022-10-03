@@ -9,7 +9,7 @@
 
 ## Live link
 
-[Live link]()
+[Live link](https://formulaxyz.github.io/weather-app/)
 
 ## Description
 
