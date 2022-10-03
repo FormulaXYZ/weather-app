@@ -1,44 +1,35 @@
-# Server-Side APIs: Weather Dashboard
+# Weather Dashboard
+
+## screenshots
+
+![screenshot1]()
+![](screenshot2)
+![](screenshot3)
+![](screenshot4)
+
+## Live link
+
+[Live link]()
 
 ## Description
 
-The App allow user to get weather information about a city by retrieving data from another application's API and using it in the context of their own.The weather dashboard will run in the browser and feature dynamically updated HTML and CSS.
+Developers are often tasked with retrieving data from another application's API and using it in the context of their own. I built
+this weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.Third-party APIs allow developers
+to access their data and functionality by making requests with specific parameters to a URL.I used [OpenWeather One Call API](https://openweathermap.org/api/one-call-api)
+to retrieve weather data for cities.
 
-The weather dashboard Use the [OpenWeather One Call API](https://openweathermap.org/api/one-call-api) to retrieve weather data for cities.
+## Uses
 
-travelers can see the weather outlook for multiple cities SO, they can plan a trip accordingly
-the weather dashboard has inputs to search for a city.
-
-this is the waether App
-
-# 06 Server-Side APIs: Weather Dashboard
-
-## Your Task
-
-Third-party APIs allow developers to access their data and functionality by making requests with specific parameters to a URL. Developers are often tasked with retrieving data from another application's API and using it in the context of their own. Your challenge is to build a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.
-
-Use the [OpenWeather One Call API](https://openweathermap.org/api/one-call-api) to retrieve weather data for cities. Read through the documentation for setup and usage instructions. You will use `localStorage` to store any persistent data. For more information on how to work with the OpenWeather API, refer to the [Full-Stack Blog on how to use API keys](https://coding-boot-camp.github.io/full-stack/apis/how-to-use-api-keys).
-
-## User Story
-
-```
-AS A traveler
-I WANT to see the weather outlook for multiple cities
-SO THAT I can plan a trip accordingly
-```
-
-## Acceptance Criteria
-
-```
-GIVEN a weather dashboard with form inputs
-WHEN I search for a city
-THEN I am presented with current and future conditions for that city and that city is added to the search history
-WHEN I view current weather conditions for that city
-THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-WHEN I view the UV index
-THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
-WHEN I view future weather conditions for that city
-THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
-WHEN I click on a city in the search history
-THEN I am again presented with current and future conditions for that city
-```
+dependes on where the user located, the app gives an option to show in standard(F) or metric(c) system
+When travelers want to see the weather outlook for multiple cities,so that they can plan a trip accordingly
+this weather dashboard with form inputs.when the user search for a city,then the user presented with current and future conditions
+for that city and that city is added to the search history.when the user view current weather conditions for that city.then the
+user presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind
+speed, and the UV index
+when the user view the UV index
+the the user presented with a color that indicates whether the conditions are favorable, moderate, or severe
+when the user view future weather conditions for that city
+then the user presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature,
+the wind speed, and the humidity
+when the user click on a city in the search history
+then the usewr again presented with current and future conditions for that city
