@@ -46,6 +46,8 @@ function LookupWeatherByCity(city) {
       xhttp.send();
    }
 }
+
+
 function ShowWeatherDetails(data, appid, unit) {
    /**This function shows the weather date in a table. It stores the REST api call result in the local storage for further usage, which is not implemented now.
     * the paramter "data" Contains the REST api result as JSO text. Here is an example, how the result looks like.
@@ -150,6 +152,112 @@ function ShowWeatherDetails(data, appid, unit) {
       document.getElementById('weathertable').style.visibility = 'visible';
    }
 }
+function showForecast(city, APIKey, unit) {
+
+   var currentDate = new Date();
+   var ForacstDate;
+   var DateFiff = 0;
+   var ForacstDay = 0;
+
+   queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey + "&units=" + unit;
+   fetch(
+
+      queryURL
+
+   ).then(function (res) {
+      return res.json()
+   })
+      .then(function (response) {
+
+         response.list.forEach(function (item) {
+
+            //return to break the foreach loop 
+            if (ForacstDay >= 5)
+               return;
+
+            ForacstDate = new Date(item.dt * 1000);
+            DateFiff = Math.round((ForacstDate.getTime() - currentDate.getTime()) / (3600 * 1000));
+
+            //console.log('DateFiff = '+ DateFiff + ' | currentDate = ' + currentDate + ' | ForacstDate = ' + ForacstDate);
+
+            //if the time different is more than 24 hours, show forcast
+            if (DateFiff >= 21) {
+               currentDate = ForacstDate;
+
+               var icon = item.weather[0].icon;
+               var iconURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+               document.getElementById("forcast-icon-" + ForacstDay).setAttribute("src", iconURL);
+
+               var dateStr = ForacstDate.toLocaleDateString();
+               document.getElementById("forcast-date-" + ForacstDay).innerText = dateStr;
+
+               document.getElementById("forcast-temp-" + ForacstDay).innerText = 'Temp: ' + item.main.temp + (unit == "imperial" ? " F°" : " C°")
+               document.getElementById("forcase-wind-" + ForacstDay).innerText = 'Wind: ' + item.wind.speed + ' MPH';
+               document.getElementById("forcase-humidity-" + ForacstDay).innerText = 'Humidity: ' + item.main.humidity + ' %';
+
+               ForacstDay++;
+
+            }
+
+
+         });
+      });
+}
+
+function addCity(city) {
+
+   if (city === undefined || city === '')
+      return;
+
+   var CityDiv;
+   // find existing city and remove from DOM and array
+   for (var i = 0; i < userCities.length; i++) {
+      if (userCities[i] === city) {
+         CityDiv = document.getElementById(city);
+         if (CityDiv != null)
+            CityDiv.remove();
+         userCities.splice(i, 1);
+      }
+   }
+   // add city to front of array
+   userCities.splice(0, 0, city);
+
+   //userCities.sort();
+
+   // newDiv and prepend to DOM
+   newDiv = buildCityDiv(city);
+   document.getElementById("cities").appendChild(newDiv);
+
+   // save updated user cities array to local storage
+   localStorage.setItem("cities", JSON.stringify(userCities));
+}
+
+function ShowRetrievedCities() {
+   var citiesStr = localStorage.getItem("cities");
+   if (citiesStr != null) {
+      userCities = JSON.parse(citiesStr);
+   }
+   //userCities.sort();
+   // iterate through array, building divs for each city
+   var cityName = "";
+   for (var i = 0; i < userCities.length; i++) {
+      cityName = userCities[i];
+      if (typeof cityName === "string")
+         document.getElementById("cities").appendChild(buildCityDiv(userCities[i]));
+   }
+
+}
+function buildCityDiv(city) {
+   var newDiv = document.createElement("div");
+   newDiv.innerText = city;
+   newDiv.setAttribute("id", city);
+   newDiv.setAttribute("class", "city-div");
+   newDiv.addEventListener('click', function () { LookupWeatherByCity(city); });
+   return newDiv;
+}
 
 
 
+// adding event to search button. 
+startButton.addEventListener('click', LookupWeatherByCity);
+ShowRetrievedCities();
