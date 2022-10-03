@@ -1,6 +1,6 @@
 /* styling the body starts here*/
 body{
-    background-color:wheat;
+    background-color:darkslategray;
     padding: 0;
     margin: 0;
     display: flex;
@@ -10,13 +10,13 @@ body{
     align-items: center;
 }
 .main-container{
-    background-color: azure;
+    background-color:azure;
     width: 400px;
     max-width: 80%;
     border-radius: 10px;
     padding: 15%;
-box-shadow: 0 0 15px 4px;
-/* styling the buttons*/
+    box-shadow: 0 0 15px 4px;
+    /* styling the buttons*/
 }
 .head{
     display:flex;
@@ -53,16 +53,37 @@ box-shadow: 0 0 15px 4px;
     text-align: left; 
 }
 .Resulttable td, #customers th {
-    border: 1px solid #ddd;
-    padding: 8px;
+    border: 0px solid #ddd;
   }
 .weather-container{
-    background-color: azure;
+    background-color:dimgray;
     width: 50%;
     max-width: 80%;
     border-radius: 10px;
     padding: 15%;
 box-shadow: 0 0 15px 4px;
 /* styling the buttons*/
+}
+.forcastDiv { 
+    float:left; 
+    background-color: #336699;
+    color: white;
+    width: 18%;
+    margin-right: 2%;
+}
+.ContainerDiv {
+    margin-right: 2%;
+    color: white;
+}
+.city-div:hover {
+    cursor: pointer;
+}
+.city_History{
+    vertical-align:top;
+    border: 1px solid #ddd;
+}
+.city_History_Header{
+    color: blue;
+    font-size:larger;
 }
   

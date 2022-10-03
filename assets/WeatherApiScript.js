@@ -46,7 +46,110 @@ function LookupWeatherByCity(city) {
       xhttp.send();
    }
 }
+function ShowWeatherDetails(data, appid, unit) {
+   /**This function shows the weather date in a table. It stores the REST api call result in the local storage for further usage, which is not implemented now.
+    * the paramter "data" Contains the REST api result as JSO text. Here is an example, how the result looks like.
+    * 
+    *
+  {
+  "coord":{
+     "lon":16.3721,
+     "lat":48.2085
+  },
+  "weather":[
+     {
+        "id":800,
+        "main":"Clear",
+        "description":"clear sky",
+        "icon":"01d"
+     }
+  ],
+  "base":"stations",
+  "main":{
+     "temp":34.63,
+     "feels_like":35.48,
+     "temp_min":33.16,
+     "temp_max":36.05,
+     "pressure":1011,
+     "humidity":36
+  },
+  "visibility":10000,
+  "wind":{
+     "speed":7.2,
+     "deg":150
+  },
+  "clouds":{
+     "all":0
+  },
+  "dt":1658761603,
+  "sys":{
+     "type":2,
+     "id":2037452,
+     "country":"AT",
+     "sunrise":1658719245,
+     "sunset":1658774460
+  },
+  "timezone":7200,
+  "id":2761369,
+  "name":"Vienna",
+  "cod":200
+}
+    */
 
+   if (data != "undefined" && data != '') {
+      //store the city weahter data in the local storage wiht key the city name and value api result (json text) 
+      localStorage[CurrentCityName] = JSON.stringify(data);
+      //to be sure parse the data as json 
+
+      var CityWeather = JSON.parse(data);
+      document.getElementById('w_cityname').innerText = CityWeather.name;
+
+      /**
+       * According to API description is the date filed contains UNIX format datetime, which is in seconds.
+       * https://openweathermap.org/current#data
+       * To create correct datetime by JavaScript function, we need to convert the information to milliseconds by multiply by 1000
+       */
+      var WeatherTimeStamp = (CityWeather.dt * 1000);
+      document.getElementById('w_date').innerText = new Date(WeatherTimeStamp);
+      document.getElementById('w_temperature').innerText = CityWeather.main.temp + (unit == "imperial" ? " F°" : " C°");
+      document.getElementById('w_windspeed').innerText = CityWeather.wind.speed + ' MPH';
+      document.getElementById('w_humidity').innerText = CityWeather.main.humidity + " %";
+
+      var icon_URL = "http://openweathermap.org/img/wn/" + CityWeather.weather[0].icon + "@2x.png";
+      var WetherIcon = document.getElementById('current_icon');
+      WetherIcon.setAttribute("src", icon_URL);
+      WetherIcon.setAttribute("alt", "weather icon");
+
+
+      var lon = CityWeather.coord.lon;
+      var lat = CityWeather.coord.lat;
+
+      //{"lat":34.257,"lon":-85.1647,"date_iso":"2022-08-07T12:00:00Z","date":1659873600,"value":11.04}
+      queryURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + appid + "&lat=" + lat + "&lon=" + lon;
+
+      fetch(queryURL
+      ).then(function (res) {
+         return res.json()
+      }
+      ).then(function (response) {
+         //response = response.json()
+         var uvIndex = response.value;
+         var uvColor = "";
+         if (uvIndex < 3) { uvColor = "green"; }
+         else if (uvIndex < 6) { uvColor = "yellow"; }
+         else if (uvIndex < 8) { uvColor = "orange"; }
+         else if (uvIndex < 11) { uvColor = "red"; }
+         else { uvColor = "violet"; }
+         document.getElementById('w_UV').innerText = uvIndex;
+         document.getElementById('w_UV').setAttribute("style", "background-color: " + uvColor);
+      }).catch((error) => {
+         console.log("UV Index call failed");
+      });
+
+
+      document.getElementById('weathertable').style.visibility = 'visible';
+   }
+}
 
 
 
