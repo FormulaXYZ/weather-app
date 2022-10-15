@@ -1,45 +1,45 @@
 var startButton = document.getElementById('start-btn');
-var UnitsField = document.getElementById('units');
-var CurrentCityName = '';
+var unitsField = document.getElementById('units');
+var currentCityName = '';
 var userCities = [];
 
 
 
-function LookupWeatherByCity(city) {
+function lookupWeatherByCity(city) {
 
    var cityField = document.getElementById('cityname');
 
 
    if (typeof city === "string" && city != '') {
-      CurrentCityName = city;
+      currentCityName = city;
       cityField.value = city;
    }
    else
-      CurrentCityName = cityField.value;
+      currentCityName = cityField.value;
 
 
-   if (CurrentCityName != '') {
+   if (currentCityName != '') {
       //store the city alleyways in upper case, no matter how the user insert this city name 
-      CurrentCityName = CurrentCityName.toLocaleUpperCase();
+      currentCityName = currentCityName.toLocaleUpperCase();
 
-      addCity(CurrentCityName);
+      addCity(currentCityName);
 
       var unit = document.getElementById('units').value;
       //change this wiht your app id
       var appid = '3267058342c6ea66b59e354428131016';
 
       //define the api url
-      var ApiUrl = 'http://api.openweathermap.org/data/2.5/weather?q=' + CurrentCityName + '&appid=' + appid + '&units=' + unit;
+      var apiUrl = 'http://api.openweathermap.org/data/2.5/weather?q=' + CurrentCityName + '&appid=' + appid + '&units=' + unit;
 
 
       //create object for api call
       var xhttp = new XMLHttpRequest();
-      xhttp.open("GET", encodeURI(ApiUrl), true);
+      xhttp.open("GET", encodeURI(apiUrl), true);
       xhttp.onreadystatechange = function () {
          if (this.readyState == 4 && this.status == 200) {
             // call funtion to show result:
-            ShowWeatherDetails(xhttp.responseText, appid, unit)
-            showForecast(CurrentCityName, appid, unit);
+            showWeatherDetails(xhttp.responseText, appid, unit)
+            showForecast(currentCityName, appid, unit);
          }
       };
       //fire api call
@@ -48,7 +48,7 @@ function LookupWeatherByCity(city) {
 }
 
 
-function ShowWeatherDetails(data, appid, unit) {
+function showWeatherDetails(data, appid, unit) {
    /**This function shows the weather date in a table. It stores the REST api call result in the local storage for further usage, which is not implemented now.
     * the paramter "data" Contains the REST api result as JSO text. Here is an example, how the result looks like.
     * 
@@ -103,28 +103,28 @@ function ShowWeatherDetails(data, appid, unit) {
       localStorage[CurrentCityName] = JSON.stringify(data);
       //to be sure parse the data as json 
 
-      var CityWeather = JSON.parse(data);
-      document.getElementById('w_cityname').innerText = CityWeather.name;
+      var cityWeather = JSON.parse(data);
+      document.getElementById('w_cityname').innerText = cityWeather.name;
 
       /**
        * According to API description is the date filed contains UNIX format datetime, which is in seconds.
        * https://openweathermap.org/current#data
        * To create correct datetime by JavaScript function, we need to convert the information to milliseconds by multiply by 1000
        */
-      var WeatherTimeStamp = (CityWeather.dt * 1000);
-      document.getElementById('w_date').innerText = new Date(WeatherTimeStamp);
-      document.getElementById('w_temperature').innerText = CityWeather.main.temp + (unit == "imperial" ? " F°" : " C°");
-      document.getElementById('w_windspeed').innerText = CityWeather.wind.speed + ' MPH';
-      document.getElementById('w_humidity').innerText = CityWeather.main.humidity + " %";
+      var weatherTimeStamp = (cityWeather.dt * 1000);
+      document.getElementById('w_date').innerText = new Date(weatherTimeStamp);
+      document.getElementById('w_temperature').innerText = cityWeather.main.temp + (unit == "imperial" ? " F°" : " C°");
+      document.getElementById('w_windspeed').innerText = cityWeather.wind.speed + ' MPH';
+      document.getElementById('w_humidity').innerText = cityWeather.main.humidity + " %";
 
-      var icon_URL = "http://openweathermap.org/img/wn/" + CityWeather.weather[0].icon + "@2x.png";
-      var WetherIcon = document.getElementById('current_icon');
-      WetherIcon.setAttribute("src", icon_URL);
-      WetherIcon.setAttribute("alt", "weather icon");
+      var icon_URL = "http://openweathermap.org/img/wn/" + cityWeather.weather[0].icon + "@2x.png";
+      var wetherIcon = document.getElementById('current_icon');
+      wetherIcon.setAttribute("src", icon_URL);
+      wetherIcon.setAttribute("alt", "weather icon");
 
 
-      var lon = CityWeather.coord.lon;
-      var lat = CityWeather.coord.lat;
+      var lon = cityWeather.coord.lon;
+      var lat = cityWeather.coord.lat;
 
       //{"lat":34.257,"lon":-85.1647,"date_iso":"2022-08-07T12:00:00Z","date":1659873600,"value":11.04}
       queryURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + appid + "&lat=" + lat + "&lon=" + lon;
@@ -232,7 +232,7 @@ function addCity(city) {
    localStorage.setItem("cities", JSON.stringify(userCities));
 }
 
-function ShowRetrievedCities() {
+function showRetrievedCities() {
    var citiesStr = localStorage.getItem("cities");
    if (citiesStr != null) {
       userCities = JSON.parse(citiesStr);
@@ -252,12 +252,12 @@ function buildCityDiv(city) {
    newDiv.innerText = city;
    newDiv.setAttribute("id", city);
    newDiv.setAttribute("class", "city-div");
-   newDiv.addEventListener('click', function () { LookupWeatherByCity(city); });
+   newDiv.addEventListener('click', function () { lookupWeatherByCity(city); });
    return newDiv;
 }
 
 
 
 // adding event to search button. 
-startButton.addEventListener('click', LookupWeatherByCity);
-ShowRetrievedCities();
+startButton.addEventListener('click', lookupWeatherByCity);
+showRetrievedCities();
