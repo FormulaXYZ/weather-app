@@ -23,112 +23,118 @@
       <div class="aside">
         <table>
           <tr>
-            <label for="cityname">Insert city name</label><br />
-            <input type="text" id="cityname" style='width:100%' />
+            <td colspan="2">
+              <label for="cityname">Insert city name</label><br />
+              <input type="text" id="cityname" style='width:100%' />
+            </td>
           </tr>
           <tr>
-            <td>
+            <section>
+              <div>
+                <p>The weather</p>
+              </div>
+              <div></div>
+              <td></td>
+              <label for="units">Select unit</label><br />
               <select name="units" id="units">
                 <option value="imperial">Standard</option>
                 <option value="metric">Metric</option>
               </select>
+            </section>
           </tr>
           <td>
             <button id="start-btn" class="start-btn">Show Weather</button>
           </td>
           </td>
         </table>
-        <br>
-        <button id="start-btn" class="start-btn">Show Weather</button>
+        <hr>
+        <div id="cities"></div>
       </div>
-      <div class="ContainerDiv">
-        <table>
-          <tr width="15%">
-            <td class="city_History">
-              <div class="city_History_Header">Retrieved cities</div>
-              <div id="cities"></div>
-            </td>
-            <td width="85%" class="city_History">
-              <table id="weathertable" class="Resulttable">
+    </div>
+
+    <div class="col-6 col-s-9">
+      <div id="MessageView"></div>
+      <td width="85%" class="city_History">
+        <table id="weathertable" class="Resulttable">
+          <tr>
+            <td>City Name</td>
+            <td>
+              <table>
                 <tr>
-                  <td>City Name</td>
-                  <td>
-                    <table>
-                      <tr>
-                        <td id="w_cityname"></td>
-                        <td><img id="current_icon" src="" /></td>
-                      </tr>
-                    </table>
-                  </td>
+                  <td id="w_cityname"></td>
+                  <td><img id="current_icon" src="" /></td>
                 </tr>
-                <tr>
-                  <td>Date</td>
-                  <td id="w_date"></td>
-                </tr>
-                <tr>
-                  <td>Temperature</td>
-                  <td id="w_temperature"></td>
-                </tr>
-                <tr>
-                  <td>wind speed</td>
-                  <td id="w_windspeed"></td>
-                </tr>
-                <tr>
-                  <td>Humidity</td>
-                  <td id="w_humidity"></td>
-                </tr>
-                <tr>
-                  <td>UV Index:</td>
-                  <td id="w_UV"></td>
+              </table>
             </td>
           </tr>
-        </table>
-        <br>
-        <div>
-          <div class="forcastDiv">
-            <h6 id="forcast-date-0"></h6>
-            <img id="forcast-icon-0" src="">
-            <p id="forcast-temp-0"></p>
-            <p id="forcase-wind-0"></p>
-            <p id="forcase-humidity-0"></p>
-          </div>
-          <div class="forcastDiv">
-            <h6 id="forcast-date-1"></h6>
-            <img id="forcast-icon-1" src="">
-            <p id="forcast-temp-1"></p>
-            <p id="forcase-wind-1"></p>
-            <p id="forcase-humidity-1"></p>
-          </div>
-
-          <div class="forcastDiv">
-            <h6 id="forcast-date-2"></h6>
-            <img id="forcast-icon-2" src="">
-            <p id="forcast-temp-2"></p>
-            <p id="forcase-wind-2"></p>
-            <p id="forcase-humidity-2"></p>
-          </div>
-
-          <div class="forcastDiv">
-            <h6 id="forcast-date-3"></h6>
-            <img id="forcast-icon-3" src="">
-            <p id="forcast-temp-3"></p>
-            <p id="forcase-wind-3"></p>
-            <p id="forcase-humidity-3"></p>
-          </div>
-          <div class="forcastDiv">
-            <h6 id="forcast-date-4"></h6>
-            <img id="forcast-icon-4" src="">
-            <p id="forcast-temp-4"></p>
-            <p id="forcase-wind-4"></p>
-            <p id="forcase-humidity-4"></p>
-          </div>
+          <tr>
+            <td>Date</td>
+            <td id="w_date"></td>
+          </tr>
+          <tr>
+            <td>Temperature</td>
+            <td id="w_temperature"></td>
+          </tr>
+          <tr>
+            <td>wind speed</td>
+            <td id="w_windspeed"></td>
+          </tr>
+          <tr>
+            <td>Humidity</td>
+            <td id="w_humidity"></td>
+          </tr>
+          <tr>
+            <td>UV Index:</td>
+            <td id="w_UV"></td>
+      </td>
+      </tr>
+      </table>
+      <br>
+      <div>
+        <div class="forcastDiv">
+          <h6 id="forcast-date-0"></h6>
+          <img id="forcast-icon-0" src="">
+          <p id="forcast-temp-0"></p>
+          <p id="forcase-wind-0"></p>
+          <p id="forcase-humidity-0"></p>
         </div>
-        </td>
-        </tr>
-        </table>
+        <div class="forcastDiv">
+          <h6 id="forcast-date-1"></h6>
+          <img id="forcast-icon-1" src="">
+          <p id="forcast-temp-1"></p>
+          <p id="forcase-wind-1"></p>
+          <p id="forcase-humidity-1"></p>
+        </div>
+
+        <div class="forcastDiv">
+          <h6 id="forcast-date-2"></h6>
+          <img id="forcast-icon-2" src="">
+          <p id="forcast-temp-2"></p>
+          <p id="forcase-wind-2"></p>
+          <p id="forcase-humidity-2"></p>
+        </div>
+
+        <div class="forcastDiv">
+          <h6 id="forcast-date-3"></h6>
+          <img id="forcast-icon-3" src="">
+          <p id="forcast-temp-3"></p>
+          <p id="forcase-wind-3"></p>
+          <p id="forcase-humidity-3"></p>
+        </div>
+        <div class="forcastDiv">
+          <h6 id="forcast-date-4"></h6>
+          <img id="forcast-icon-4" src="">
+          <p id="forcast-temp-4"></p>
+          <p id="forcase-wind-4"></p>
+          <p id="forcase-humidity-4"></p>
+        </div>
       </div>
-      </section>
-      <script src="./assets/WeatherApiScript.js"></script>
+      </td>
+      </tr>
+      </table>
+    </div>
+    </section>
+    <script src="./assets/WeatherApiScript.js"></script>
 </body>
 
 </html>
