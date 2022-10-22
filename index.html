@@ -30,23 +30,18 @@
             </td>
           </tr>
           <tr>
-            <section>
-              <div>
-                <p>The weather</p>
-              </div>
-              <div></div>
-              <td></td>
+            <td>
               <label for="units">Select unit</label><br />
               <select name="units" id="units">
                 <option value="imperial">Standard</option>
                 <option value="metric">Metric</option>
               </select>
-            </section>
+            </td>
+
+            <td>
+              <button id="start-btn" class="start-btn">Show Weather</button>
+            </td>
           </tr>
-          <td>
-            <button id="start-btn" class="start-btn">Show Weather</button>
-          </td>
-          </td>
         </table>
         <hr>
         <div id="cities"></div>
@@ -55,40 +50,40 @@
 
     <div class="col-6 col-s-9">
       <div id="MessageView"></div>
-      <td width="85%" class="city_History">
-        <table id="weathertable" class="Resulttable">
-          <tr>
-            <td>City Name</td>
-            <td>
-              <table>
-                <tr>
-                  <td id="w_cityname"></td>
-                  <td><img id="current_icon" src="" /></td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td>Date</td>
-            <td id="w_date"></td>
-          </tr>
-          <tr>
-            <td>Temperature</td>
-            <td id="w_temperature"></td>
-          </tr>
-          <tr>
-            <td>wind speed</td>
-            <td id="w_windspeed"></td>
-          </tr>
-          <tr>
-            <td>Humidity</td>
-            <td id="w_humidity"></td>
-          </tr>
-          <tr>
-            <td>UV Index:</td>
-            <td id="w_UV"></td>
-      </td>
-      </tr>
+      <table id="weathertable" class="Resulttable">
+        <tr>
+          <td>City Name</td>
+          <td>
+            <table>
+              <tr>
+                <td id="w_cityname"></td>
+                <td><img id="current_icon" src="" /></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>Date</td>
+          <td id="w_date"></td>
+        </tr>
+        <tr>
+          <td>Temperature</td>
+          <td id="w_temperature"></td>
+        </tr>
+        <tr>
+          <td>wind speed</td>
+          <td id="w_windspeed"></td>
+        </tr>
+        <tr>
+          <td>Humidity</td>
+          <td id="w_humidity"></td>
+        </tr>
+        <tr>
+          <td>UV Index:</td>
+          <td>
+          <td id="w_UV"></td>
+          </td>
+        </tr>
       </table>
       <br>
       <div>
