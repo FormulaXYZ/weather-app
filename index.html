@@ -37,7 +37,6 @@
                 <option value="metric">Metric</option>
               </select>
             </td>
-
             <td>
               <button id="start-btn" class="start-btn">Show Weather</button>
             </td>
@@ -81,56 +80,84 @@
         <tr>
           <td>UV Index:</td>
           <td>
-          <td id="w_UV"></td>
+            <div id="w_UV" class="uv"></div>
           </td>
         </tr>
       </table>
-      <br>
-      <div>
-        <div class="forcastDiv">
-          <h6 id="forcast-date-0"></h6>
-          <img id="forcast-icon-0" src="">
-          <p id="forcast-temp-0"></p>
-          <p id="forcase-wind-0"></p>
-          <p id="forcase-humidity-0"></p>
-        </div>
-        <div class="forcastDiv">
-          <h6 id="forcast-date-1"></h6>
-          <img id="forcast-icon-1" src="">
-          <p id="forcast-temp-1"></p>
-          <p id="forcase-wind-1"></p>
-          <p id="forcase-humidity-1"></p>
-        </div>
-
-        <div class="forcastDiv">
-          <h6 id="forcast-date-2"></h6>
-          <img id="forcast-icon-2" src="">
-          <p id="forcast-temp-2"></p>
-          <p id="forcase-wind-2"></p>
-          <p id="forcase-humidity-2"></p>
-        </div>
-
-        <div class="forcastDiv">
-          <h6 id="forcast-date-3"></h6>
-          <img id="forcast-icon-3" src="">
-          <p id="forcast-temp-3"></p>
-          <p id="forcase-wind-3"></p>
-          <p id="forcase-humidity-3"></p>
-        </div>
-        <div class="forcastDiv">
-          <h6 id="forcast-date-4"></h6>
-          <img id="forcast-icon-4" src="">
-          <p id="forcast-temp-4"></p>
-          <p id="forcase-wind-4"></p>
-          <p id="forcase-humidity-4"></p>
-        </div>
-      </div>
-      </td>
-      </tr>
-      </table>
     </div>
-    </section>
-    <script src="./assets/WeatherApiScript.js"></script>
+    <div class="col-3 col-s-3 menu ResultView">
+      <ul>
+        <li>
+          <table>
+            <tr>
+              <td> <img id="forcast-icon-0" src=""></td>
+              <td>
+                <p id="forcast-date-0"></p>
+                <p id="forcast-temp-0"></p>
+                <p id="forcase-wind-0"></p>
+                <p id="forcase-humidity-0"></p>
+              </td>
+            </tr>
+          </table>
+        </li>
+        <li>
+          <table>
+            <tr>
+              <td> <img id="forcast-icon-1" src=""></td>
+              <td>
+                <p id="forcast-date-1"></p>
+                <p id="forcast-temp-1"></p>
+                <p id="forcase-wind-1"></p>
+                <p id="forcase-humidity-1"></p>
+              </td>
+            </tr>
+          </table>
+        </li>
+        <li>
+          <table>
+            <tr>
+              <td> <img id="forcast-icon-2" src=""></td>
+              <td>
+                <p id="forcast-date-2"></p>
+                <p id="forcast-temp-2"></p>
+                <p id="forcase-wind-2"></p>
+                <p id="forcase-humidity-2"></p>
+              </td>
+            </tr>
+          </table>
+        </li>
+        <li>
+          <table>
+            <tr>
+              <td> <img id="forcast-icon-3" src=""></td>
+              <td>
+                <p id="forcast-date-3"></p>
+                <p id="forcast-temp-3"></p>
+                <p id="forcase-wind-3"></p>
+                <p id="forcase-humidity-3"></p>
+              </td>
+            </tr>
+          </table>
+        </li>
+        <li>
+          <table>
+            <tr>
+              <td> <img id="forcast-icon-4" src=""></td>
+              <td>
+                <p id="forcast-date-4"></p>
+                <p id="forcast-temp-4"></p>
+                <p id="forcase-wind-4"></p>
+                <p id="forcase-humidity-4"></p>
+              </td>
+            </tr>
+          </table>
+        </li>
+      </ul>
+    </div>
+  </div>
+
 </body>
+<script src="./assets/WeatherApiScript.js"></script>
+
 
 </html>
