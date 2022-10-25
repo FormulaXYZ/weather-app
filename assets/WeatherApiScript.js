@@ -21,10 +21,10 @@ function lookupWeatherByCity(city) {
    if (currentCityName != '') {
       //store the city alleyways in upper case, no matter how the user insert this city name 
       currentCityName = currentCityName.toLocaleUpperCase();
+      //add event to refresh the weather wiht changed unit
+      unitsField.addEventListener('change', lookupWeatherByCity);
+      var unit = unitsField.value;
 
-      addCity(currentCityName);
-
-      var unit = document.getElementById('units').value;
       //change this wiht your app id
       var appid = '3267058342c6ea66b59e354428131016';
 

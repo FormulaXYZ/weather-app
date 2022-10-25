@@ -35,57 +35,55 @@
     margin: 0;
     padding: 0;
   }
-
-.start-btn, .next-btn{
-    font-size: large;
-    font-weight: bolder;
-    padding: 5px 10px;
-}
-.hide{
-    display: none;
-}
-.message {
-    text-align: center;
-    color: blue;
-}
-.Resulttable{
-    width: 100%;
-    visibility: hidden;
-    border-collapse: collapse;
-    text-align: left; 
-}
-.Resulttable td, #customers th {
-    border: 0px solid #ddd;
+  .menu li {
+    padding: 8px;
+    margin-bottom: 7px;
+    background-color: #33b5e5;
+    color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   }
-.weather-container{
-    background-color:dimgray;
-    width: 50%;
-    max-width: 80%;
-    border-radius: 10px;
-    padding: 15%;
-box-shadow: 0 0 15px 4px;
-/* styling the buttons*/
-}
-.forcastDiv { 
-    float:left; 
-    background-color: #336699;
-    color: white;
-    width: 18%;
-    margin-right: 2%;
-}
-.ContainerDiv {
-    margin-right: 2%;
-    color: white;
-}
-.city-div:hover {
-    cursor: pointer;
-}
-.city_History{
-    vertical-align:top;
-    border: 1px solid #ddd;
-}
-.city_History_Header{
-    color: blue;
-    font-size:larger;
-}
   
+  .menu li:hover {
+    background-color: #0099cc;
+  }
+  
+  .aside {
+    background-color: #33b5e5;
+    padding: 15px;
+    color: #ffffff;
+    text-align:left;
+    font-size: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  }
+  
+  .footer {
+    background-color: #0099cc;
+    color: #ffffff;
+    text-align: center;
+    font-size: 12px;
+    padding: 15px;
+  }
+
+
+    .start-btn{
+        background-color: DodgerBlue;
+        border: none;
+        color: white;
+        padding: 12px 16px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      /* Darker background on mouse-over */
+      .start-btn:hover {
+        background-color: RoyalBlue;
+      }
+      .city-div:hover {
+        cursor: pointer;
+      }
+      .uv{
+        width: 25%;
+        color: black;
+      }
+      .ResultView{
+        visibility:hidden;
+      };
