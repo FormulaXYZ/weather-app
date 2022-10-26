@@ -33,20 +33,26 @@ function lookupWeatherByCity(city) {
 
 
       //create object for api call
-      var xhttp = new XMLHttpRequest();
-      xhttp.open("GET", encodeURI(apiUrl), true);
-      xhttp.onreadystatechange = function () {
-         if (this.readyState == 4 && this.status == 200) {
-            // call funtion to show result:
-            showWeatherDetails(xhttp.responseText, appid, unit)
-            showForecast(currentCityName, appid, unit);
-         }
-      };
-      //fire api call
-      xhttp.send();
+      var apiResultText = "";
+      fetch(apiUrl
+      ).then(function (res) {
+         if (res.status == 200)
+            addCity(currentCityName);
+         else
+            apiResultText = res.statusText + " (" + res.status + ")";
+
+         return res.json()
+      }
+      ).then(function (response) {
+         showWeatherDetails(response, appid, unit)
+         showForecast(currentCityName, appid, unit);
+      }).catch((error) => {
+         document.getElementById("MessageView").innerText = "Api call Error -> " + apiResultText + " -> " + error;
+         showHideWeatherResult(false);
+      });
+
    }
 }
-
 
 function showWeatherDetails(data, appid, unit) {
    /**This function shows the weather date in a table. It stores the REST api call result in the local storage for further usage, which is not implemented now.
@@ -98,14 +104,16 @@ function showWeatherDetails(data, appid, unit) {
 }
     */
 
-   if (data != "undefined" && data != '') {
+   if (data != "undefined" && data != null) {
       //store the city weahter data in the local storage wiht key the city name and value api result (json text) 
       localStorage[CurrentCityName] = JSON.stringify(data);
       //to be sure parse the data as json 
 
-      var cityWeather = JSON.parse(data);
+      var cityWeather = data;
       document.getElementById('w_cityname').innerText = cityWeather.name;
 
+      //show result div
+      showHideWeatherResult(true);
       /**
        * According to API description is the date filed contains UNIX format datetime, which is in seconds.
        * https://openweathermap.org/current#data
