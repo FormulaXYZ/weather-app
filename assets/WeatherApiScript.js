@@ -106,7 +106,7 @@ function showWeatherDetails(data, appid, unit) {
 
    if (data != "undefined" && data != null) {
       //store the city weahter data in the local storage wiht key the city name and value api result (json text) 
-      localStorage[CurrentCityName] = JSON.stringify(data);
+      localStorage[currentCityName] = JSON.stringify(data);
       //to be sure parse the data as json 
 
       var cityWeather = data;
@@ -137,8 +137,10 @@ function showWeatherDetails(data, appid, unit) {
       //{"lat":34.257,"lon":-85.1647,"date_iso":"2022-08-07T12:00:00Z","date":1659873600,"value":11.04}
       queryURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + appid + "&lat=" + lat + "&lon=" + lon;
 
+      var apiResultText = "";
       fetch(queryURL
       ).then(function (res) {
+         apiResultText = res.statusText + " (" + res.status + ")";
          return res.json()
       }
       ).then(function (response) {
@@ -153,7 +155,9 @@ function showWeatherDetails(data, appid, unit) {
          document.getElementById('w_UV').innerText = uvIndex;
          document.getElementById('w_UV').setAttribute("style", "background-color: " + uvColor);
       }).catch((error) => {
-         console.log("UV Index call failed");
+         document.getElementById("MessageView").innerText = "Api call Error -> " + apiResultText + " -> " + error;
+         showHideWeatherResult(false);
+
       });
 
 
@@ -262,6 +266,16 @@ function buildCityDiv(city) {
    newDiv.setAttribute("class", "city-div");
    newDiv.addEventListener('click', function () { lookupWeatherByCity(city); });
    return newDiv;
+}
+function showHideWeatherResult(showDiv) {
+
+   const collection = document.querySelectorAll(".ResultView");
+   //show or hide result div
+   collection.forEach(function (view) {
+      view.style.visibility = showDiv ? 'visible' : 'hidden';
+   });
+   document.getElementById("MessageView").style.display = showDiv ? 'none' : 'block';
+
 }
 
 
