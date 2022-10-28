@@ -29,7 +29,7 @@ function lookupWeatherByCity(city) {
       var appid = '3267058342c6ea66b59e354428131016';
 
       //define the api url
-      var apiUrl = 'http://api.openweathermap.org/data/2.5/weather?q=' + CurrentCityName + '&appid=' + appid + '&units=' + unit;
+      var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + currentCityName + '&appid=' + appid + '&units=' + unit;
 
 
       //create object for api call
@@ -55,57 +55,10 @@ function lookupWeatherByCity(city) {
 }
 
 function showWeatherDetails(data, appid, unit) {
-   /**This function shows the weather date in a table. It stores the REST api call result in the local storage for further usage, which is not implemented now.
-    * the paramter "data" Contains the REST api result as JSO text. Here is an example, how the result looks like.
-    * 
-    *
-  {
-  "coord":{
-     "lon":16.3721,
-     "lat":48.2085
-  },
-  "weather":[
-     {
-        "id":800,
-        "main":"Clear",
-        "description":"clear sky",
-        "icon":"01d"
-     }
-  ],
-  "base":"stations",
-  "main":{
-     "temp":34.63,
-     "feels_like":35.48,
-     "temp_min":33.16,
-     "temp_max":36.05,
-     "pressure":1011,
-     "humidity":36
-  },
-  "visibility":10000,
-  "wind":{
-     "speed":7.2,
-     "deg":150
-  },
-  "clouds":{
-     "all":0
-  },
-  "dt":1658761603,
-  "sys":{
-     "type":2,
-     "id":2037452,
-     "country":"AT",
-     "sunrise":1658719245,
-     "sunset":1658774460
-  },
-  "timezone":7200,
-  "id":2761369,
-  "name":"Vienna",
-  "cod":200
-}
-    */
+
 
    if (data != "undefined" && data != null) {
-      //store the city weahter data in the local storage wiht key the city name and value api result (json text) 
+      //store the city weahter data in the local storage with key the city name and value api result (json text) 
       localStorage[currentCityName] = JSON.stringify(data);
       //to be sure parse the data as json 
 
@@ -125,7 +78,7 @@ function showWeatherDetails(data, appid, unit) {
       document.getElementById('w_windspeed').innerText = cityWeather.wind.speed + ' MPH';
       document.getElementById('w_humidity').innerText = cityWeather.main.humidity + " %";
 
-      var icon_URL = "http://openweathermap.org/img/wn/" + cityWeather.weather[0].icon + "@2x.png";
+      var icon_URL = "https://openweathermap.org/img/wn/" + cityWeather.weather[0].icon + "@2x.png";
       var wetherIcon = document.getElementById('current_icon');
       wetherIcon.setAttribute("src", icon_URL);
       wetherIcon.setAttribute("alt", "weather icon");
@@ -167,9 +120,9 @@ function showWeatherDetails(data, appid, unit) {
 function showForecast(city, APIKey, unit) {
 
    var currentDate = new Date();
-   var ForacstDate;
-   var DateFiff = 0;
-   var ForacstDay = 0;
+   var foracstDate;
+   var dateFiff = 0;
+   var foracstDay = 0;
 
    queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey + "&units=" + unit;
    fetch(
@@ -184,30 +137,30 @@ function showForecast(city, APIKey, unit) {
          response.list.forEach(function (item) {
 
             //return to break the foreach loop 
-            if (ForacstDay >= 5)
+            if (foracstDay >= 5)
                return;
 
-            ForacstDate = new Date(item.dt * 1000);
-            DateFiff = Math.round((ForacstDate.getTime() - currentDate.getTime()) / (3600 * 1000));
+            foracstDate = new Date(item.dt * 1000);
+            dateFiff = Math.round((foracstDate.getTime() - currentDate.getTime()) / (3600 * 1000));
 
             //console.log('DateFiff = '+ DateFiff + ' | currentDate = ' + currentDate + ' | ForacstDate = ' + ForacstDate);
 
             //if the time different is more than 24 hours, show forcast
-            if (DateFiff >= 21) {
-               currentDate = ForacstDate;
+            if (dateFiff >= 21) {
+               currentDate = foracstDate;
 
                var icon = item.weather[0].icon;
-               var iconURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-               document.getElementById("forcast-icon-" + ForacstDay).setAttribute("src", iconURL);
+               var iconURL = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
+               document.getElementById("forcast-icon-" + foracstDay).setAttribute("src", iconURL);
 
-               var dateStr = ForacstDate.toLocaleDateString();
-               document.getElementById("forcast-date-" + ForacstDay).innerText = dateStr;
+               var dateStr = foracstDate.toLocaleDateString();
+               document.getElementById("forcast-date-" + foracstDay).innerText = dateStr;
 
-               document.getElementById("forcast-temp-" + ForacstDay).innerText = 'Temp: ' + item.main.temp + (unit == "imperial" ? " F°" : " C°")
-               document.getElementById("forcase-wind-" + ForacstDay).innerText = 'Wind: ' + item.wind.speed + ' MPH';
-               document.getElementById("forcase-humidity-" + ForacstDay).innerText = 'Humidity: ' + item.main.humidity + ' %';
+               document.getElementById("forcast-temp-" + foracstDay).innerText = 'Temp: ' + item.main.temp + (unit == "imperial" ? " F°" : " C°")
+               document.getElementById("forcase-wind-" + foracstDay).innerText = 'Wind: ' + item.wind.speed + ' MPH';
+               document.getElementById("forcase-humidity-" + foracstDay).innerText = 'Humidity: ' + item.main.humidity + ' %';
 
-               ForacstDay++;
+               foracstDay++;
 
             }
 
