@@ -2,10 +2,10 @@
 
 ## screenshots
 
-![screenshot1](./images/wa)
-![screenshot2](./images/weather2.png)
-![screenshot3](./images/weather3.png)
-![screenshot4](./images/weather4.png)
+![screenshot1](./images/weath1.png)
+![screenshot2](./images/weat2.png)
+![screenshot3](./images/weat3.png)
+![screenshot4](./images/weat4.png)
 
 ## Live link
 
